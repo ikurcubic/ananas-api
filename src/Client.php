@@ -125,20 +125,6 @@ class Client
 
     public function bulkEditProducts(array $data): array
     {
-        $data = array_filter($data, function ($value, $key) {
-            return in_array($key,
-                [
-                    'id',
-                    'packageWeightValue',
-                    'packageWeightUnit',
-                    'basePrice',
-                    'vat',
-                    'stockLevel',
-                    'serviceable',
-                    'sku'
-                ]);
-        });
-
         $endpoint = "/product/api/v1/merchant-integration/product/bulk";
         $jsonData = $this->request('PUT', $endpoint, ['json' => $data]);
         return $jsonData;
